@@ -1,5 +1,5 @@
 <template>
-    <div>Hello world!</div>
+    <div>{{message}}</div>
 </template>
 
 <script lang="ts">
@@ -8,7 +8,9 @@ import Component from "vue-class-component";
 
 @Component
 export default class App extends Vue{
-
+    public get message(){
+        return this.$store.state.message;
+    }
 }
 </script>
 
