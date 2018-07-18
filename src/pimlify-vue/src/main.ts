@@ -1,24 +1,26 @@
-import Vue from 'vue';
+import Vue from "vue";
 import App from "./components/App.vue";
+import Vuetify from "vuetify";
+import VueRouter from "vue-router";
 
-import Vuetify from 'vuetify';
+import "vuetify/dist/vuetify.css";
 
-import 'vuetify/dist/vuetify.css'
+import "./vuetify-fix.css";
 
-import './vuetify-fix.css'
-
-import store from './store'
+import store from "./store";
+import router from "./router";
 
 Vue.use(Vuetify);
+Vue.use(VueRouter);
 
 new Vue({
-  el: '#app',
+  el: "#app",
   store,
+  router,
   render: h => h(App)
 });
 
-// new Vue({
-//   el:'#app',
-//   components:{app},
-//   template: "<div><app></app></div>"
-// })
+// Lets load all menus :D
+store.dispatch("loadAllOrderMenus");
+
+store.commit("setCurrentOrderMenu", { item: store.state.orderMenus });
