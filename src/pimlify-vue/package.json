@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/DonkeyKongJr/pimlify#readme",
   "dependencies": {
+    "firebase": "^5.2.0",
     "vue": "^2.5.16",
     "vue-class-component": "^6.2.0",
     "vue-hot-reload-api": "^2.3.0",
