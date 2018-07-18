@@ -1,0 +1,34 @@
+{
+  "name": "pimlify-vue",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/parcel-bundler/bin/cli.js index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DonkeyKongJr/pimlify.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DonkeyKongJr/pimlify/issues"
+  },
+  "homepage": "https://github.com/DonkeyKongJr/pimlify#readme",
+  "dependencies": {
+    "vue": "^2.5.16",
+    "vue-class-component": "^6.2.0",
+    "vue-hot-reload-api": "^2.3.0",
+    "vuefire": "^1.4.5",
+    "vuetify": "^1.1.5",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^2.1.0",
+    "parcel-bundler": "^1.9.7",
+    "typescript": "^2.9.2",
+    "vue-template-compiler": "^2.5.16"
+  }
+}
