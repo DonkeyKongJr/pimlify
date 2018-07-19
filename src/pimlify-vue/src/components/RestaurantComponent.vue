@@ -1,7 +1,7 @@
 <template>
 <v-card v-if="restaurants !== undefined">
-    <v-card-title>
-        Restaurants
+    <v-card-title class="justify-center">
+        <b>Restaurants</b>
     </v-card-title>
     <v-data-table
     :items="restaurants"
@@ -10,6 +10,7 @@
     hide-headers
   >
     <template slot="items" slot-scope="props">
+      <td>{{ props.item.id }}</td>
       <td>{{ props.item.name }}</td>
     </template>
   </v-data-table>

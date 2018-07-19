@@ -26,7 +26,7 @@
         </v-list-tile>
         <v-list-tile to="/menu/1">
           <v-list-tile-action>
-            <font-awesome-icon icon="book-open" />
+            <font-awesome-icon icon="home" />
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>

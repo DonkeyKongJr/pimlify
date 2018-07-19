@@ -33,7 +33,9 @@ const actions: ActionTree<State, State> = {
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-          restaurants.push(doc.data() as Restaurant);
+          const restaurant = doc.data() as Restaurant;
+          restaurant.id = doc.id;
+          restaurants.push(restaurant);
         });
         commit('setRestaurants', { items: restaurants });
       });
