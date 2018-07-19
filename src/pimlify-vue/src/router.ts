@@ -1,11 +1,17 @@
-import OrderMenu from "./components/OrderMenu.vue";
-import VueRouter from "vue-router";
+import OrderMenu from './components/OrderMenu.vue';
+import RestaurantComponent from './components/RestaurantComponent.vue';
+import VueRouter from 'vue-router';
 
 const routes = [
   {
-    path: "/menu/:menuId",
+    path: '/menu/:menuId',
     component: OrderMenu,
-    name: "menu"
+    name: 'menu'
+  },
+  {
+    path: '/restaurant',
+    component: RestaurantComponent,
+    name: 'restaurant'
   }
 ];
 

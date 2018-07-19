@@ -21,6 +21,8 @@ Vue.use(VueRouter);
 firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
+const settings = { timestampsInSnapshots: true };
+db.settings(settings);
 
 new Vue({
   el: '#app',
@@ -31,5 +33,6 @@ new Vue({
 
 // Lets load all menus :D
 store.dispatch('loadAllOrderMenus');
+store.dispatch('loadAllRestaurantsFromFireBase');
 
 store.commit('setCurrentOrderMenu', { item: store.state.orderMenus });
