@@ -10,9 +10,25 @@ import 'firebase/firestore';
 
 import './vuetify-fix.css';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faCoffee,
+  faUtensils,
+  faHome,
+  faBookOpen
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
 import store from './store';
 import router from './router';
 import { firebaseConfig } from './firebase-config';
+
+library.add(faUtensils);
+library.add(faCoffee);
+library.add(faHome);
+library.add(faBookOpen);
+
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.use(Vuetify);
 Vue.use(VueFire);
