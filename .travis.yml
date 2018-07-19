@@ -10,6 +10,8 @@ cache:
 
 addons:
   chrome: stable
+  
+before_install: cd src\pimlify-vue
 
 script:
   - npm run build
