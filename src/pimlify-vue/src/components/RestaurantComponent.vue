@@ -5,9 +5,9 @@
     </v-card-title>
     <v-data-table
     :items="restaurants"
+    :headers="headers"
     class="elevation-1"
     hide-actions
-    hide-headers
   >
     <template slot="items" slot-scope="props">
       <td>{{ props.item.id }}</td>
@@ -25,6 +25,15 @@ import Component from 'vue-class-component';
 
 @Component
 export default class RestaurantComponent extends Vue {
+  data() {
+    return {
+      headers: [
+        { text: 'Id', value: 'id', sortable: false },
+        { text: 'Name', value: 'name' },
+        { text: 'Location', value: 'location' }
+      ]
+    };
+  }
   public get restaurants() {
     return this.$store.state.restaurants;
   }
