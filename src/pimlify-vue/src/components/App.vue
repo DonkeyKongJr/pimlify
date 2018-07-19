@@ -6,7 +6,7 @@
       app
     >
       <v-list dense>
-        <v-list-tile>
+        <v-list-tile to="/">
           <v-list-tile-action>
             <v-icon>home</v-icon>
           </v-list-tile-action>
@@ -14,12 +14,14 @@
             <v-list-tile-title>Home</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile>
+        <v-list-tile to="/menu/1">
           <v-list-tile-action>
             <v-icon>contact_mail</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>Contact</v-list-tile-title>
+            <v-list-tile-title>
+              Menu
+            </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -34,6 +36,7 @@
           justify-center
           align-center
         >
+        <router-view></router-view>
         </v-layout>
       </v-container>
     </v-content>
@@ -46,7 +49,6 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-
 @Component
 export default class App extends Vue {
   public get message() {

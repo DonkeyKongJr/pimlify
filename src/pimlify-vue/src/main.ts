@@ -1,12 +1,14 @@
-import Vue from 'vue';
+import Vue from "vue";
 import App from './components/App.vue';
+import Vuetify from "vuetify";
+import VueRouter from "vue-router";
 
-import Vuetify from 'vuetify';
+import "vuetify/dist/vuetify.css";
 import VueFire from 'vuefire';
 import firebase from 'firebase';
 import 'firebase/firestore';
 
-import 'vuetify/dist/vuetify.css';
+
 
 import './vuetify-fix.css';
 
@@ -21,7 +23,13 @@ firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
 
 new Vue({
-  el: '#app',
+  el: "#app",
   store,
+  router,
   render: h => h(App)
 });
+
+// Lets load all menus :D
+store.dispatch("loadAllOrderMenus");
+
+store.commit("setCurrentOrderMenu", { item: store.state.orderMenus });
