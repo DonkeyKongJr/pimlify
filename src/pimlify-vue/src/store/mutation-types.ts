@@ -26,4 +26,5 @@ export class AvailableOrder {
 export class Restaurant {
   public id: string = '';
   public name: string = '';
+  public location: string = '';
 }

@@ -12,6 +12,8 @@
     <template slot="items" slot-scope="props">
       <td>{{ props.item.id }}</td>
       <td>{{ props.item.name }}</td>
+      <td>{{ props.item.location }}</td>
+
     </template>
   </v-data-table>
 </v-card>
