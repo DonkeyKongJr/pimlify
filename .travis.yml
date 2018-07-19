@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "8"
+dist: trusty
+sudo: false
+
+cache:
+  directories:
+    - node_modules
+
+addons:
+  chrome: stable
+  
+before_install: cd src/pimlify-vue
+
+script:
+  - npm run build

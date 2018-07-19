@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "build": "parcel build"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/DonkeyKongJr/pimlify#readme",
   "dependencies": {
+    "firebase": "^5.2.0",
     "vue": "^2.5.16",
     "vue-class-component": "^6.2.0",
     "vue-hot-reload-api": "^2.3.0",
