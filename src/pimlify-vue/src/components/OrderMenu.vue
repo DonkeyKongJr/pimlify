@@ -20,9 +20,9 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Component from "vue-class-component";
-import { OrderMenu as OrderMenuModel } from "../store";
+import Vue from 'vue';
+import Component from 'vue-class-component';
+import { OrderMenu as OrderMenuModel } from '../store';
 
 @Component
 export default class OrderMenu extends Vue {
@@ -31,7 +31,7 @@ export default class OrderMenu extends Vue {
   }
 
   public set menuId(value: number) {
-    this.$store.dispatch("setCurrentOrderFromMenuId", { id: value });
+    this.$store.dispatch('setCurrentOrderFromMenuId', { id: value });
   }
 
   public get menuId() {

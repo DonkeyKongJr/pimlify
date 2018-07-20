@@ -1,6 +1,6 @@
-import { MutationTree } from "vuex";
-import State from "./state";
-import { OrderMenu } from "./mutation-types";
+import { MutationTree } from 'vuex';
+import State from './state';
+import { OrderMenu } from './mutation-types';
 
 const mutations: MutationTree<State> = {
   setOrderMenus(state, { items }) {
@@ -8,6 +8,9 @@ const mutations: MutationTree<State> = {
   },
   setCurrentOrderMenu(state, { item }) {
     state.currentOrderMenu = item;
+  },
+  setRestaurants(state, { items }) {
+    state.restaurants = items;
   }
 };
 
