@@ -3,7 +3,6 @@ A vue pwa to take orders for our most favorite restaurant. All data is stored in
 
 ![alt text](https://travis-ci.com/DonkeyKongJr/pimlify.svg?branch=master)
 
-
 ## How to start pimlify development
 
 ### Installation
@@ -15,3 +14,7 @@ Install dependencies:
 Start development
 
 `npm start`
+
+Build Project
+
+`npm run build`
