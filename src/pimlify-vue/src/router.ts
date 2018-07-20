@@ -1,5 +1,5 @@
 import OrderMenu from './components/OrderMenu.vue';
-import RestaurantComponent from './components/RestaurantComponent.vue';
+import Restaurant from './components/Restaurant.vue';
 import VueRouter from 'vue-router';
 
 const routes = [
@@ -10,7 +10,7 @@ const routes = [
   },
   {
     path: '/restaurant',
-    component: RestaurantComponent,
+    component: Restaurant,
     name: 'restaurant'
   }
 ];

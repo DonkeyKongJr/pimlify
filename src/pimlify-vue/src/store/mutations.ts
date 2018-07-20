@@ -1,13 +1,12 @@
 import { MutationTree } from 'vuex';
 import State from './state';
-import { OrderMenu } from './mutation-types';
 
 const mutations: MutationTree<State> = {
-  setOrderMenus(state, { items }) {
-    state.orderMenus = items;
+  setMenus(state, { items }) {
+    state.menus = items;
   },
-  setCurrentOrderMenu(state, { item }) {
-    state.currentOrderMenu = item;
+  setCurrentMenu(state, { item }) {
+    state.currentMenu = item;
   },
   setRestaurants(state, { items }) {
     state.restaurants = items;

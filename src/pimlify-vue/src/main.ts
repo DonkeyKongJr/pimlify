@@ -48,7 +48,7 @@ new Vue({
 });
 
 // Lets load all menus :D
-store.dispatch('loadAllOrderMenus');
-store.dispatch('loadAllRestaurantsFromFireBase');
+store.dispatch('loadMenus');
+store.dispatch('loadRestaurants');
 
-store.commit('setCurrentOrderMenu', { item: store.state.orderMenus });
+store.commit('setCurrentMenu', { item: store.state.menus });

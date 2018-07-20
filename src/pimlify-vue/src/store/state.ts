@@ -1,8 +1,8 @@
-import { Order, OrderMenu, AvailableOrder, Restaurant } from './mutation-types';
+import { Order, Menu, AvailableItem, Restaurant } from './mutation-types';
 
 export default class State {
   public orders: Order[] = [];
-  public currentOrderMenu: OrderMenu | undefined = undefined;
-  public orderMenus: OrderMenu[] = [];
+  public currentMenu: Menu | undefined = undefined;
+  public menus: Menu[] = [];
   public restaurants: Restaurant[] = [];
 }

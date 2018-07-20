@@ -1,10 +1,10 @@
 <template>
-<v-card v-if="currentOrderMenu !== undefined">
+<v-card v-if="currentMenu !== undefined">
     <v-card-title>
-        {{currentOrderMenu.title}}
+        {{currentMenu.title}}
     </v-card-title>
     <v-data-table
-    :items="currentOrderMenu.availableOrders"
+    :items="currentMenu.availableOrders"
     class="elevation-1"
     hide-actions
     hide-headers
@@ -22,12 +22,12 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { OrderMenu as OrderMenuModel } from '../store';
+import { Menu as OrderMenuModel } from '../store';
 
 @Component
 export default class OrderMenu extends Vue {
-  public get currentOrderMenu(): OrderMenuModel {
-    return this.$store.state.currentOrderMenu;
+  public get currentMenu(): OrderMenuModel {
+    return this.$store.state.currentMenu;
   }
 
   public set menuId(value: number) {
