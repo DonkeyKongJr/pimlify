@@ -7,7 +7,7 @@ export class Order {
 export class Menu {
   public constructor(
     public id: string,
-    public availableItems: AvailableItem[]
+    public availableItems: AvailableItem[] = []
   ) {}
   public description: string = "";
   public restaurant: string = "";
@@ -19,9 +19,9 @@ export class AvailableItem {
     public price: number
   ) {}
 
-  public orderNr: string = "";
-  public ingredients: string = "";
-  public description: string = "";
+  public orderNr?: string;
+  public ingredients?: string;
+  public description?: string;
 }
 
 export class Restaurant {

@@ -1,5 +1,6 @@
 import OrderMenu from './components/OrderMenu.vue';
 import Restaurant from './components/Restaurant.vue';
+import Home from './components/Home.vue';
 import VueRouter from 'vue-router';
 
 const routes = [
@@ -12,6 +13,10 @@ const routes = [
     path: '/restaurant',
     component: Restaurant,
     name: 'restaurant'
+  },{
+    path: '/',
+    component: Home,
+    name: 'home'
   }
 ];
 
