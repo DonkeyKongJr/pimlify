@@ -4,7 +4,7 @@
         {{currentMenu.title}}
     </v-card-title>
     <v-data-table
-    :items="currentMenu.availableOrders"
+    :items="currentMenu.availableItems"
     class="elevation-1"
     hide-actions
     hide-headers
@@ -20,22 +20,20 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
-import { Menu as OrderMenuModel } from '../store';
+import Vue from "vue";
+import Component from "vue-class-component";
+import store, { Menu as OrderMenuModel } from "../store";
+import { Route } from "vue-router";
 
 @Component
 export default class OrderMenu extends Vue {
-  public get currentMenu(): OrderMenuModel {
+  beforeRouteEnter(to: Route, from: Route, next: (() => void)) {
+    let menu = store.state.menus.find(m => m.id === to.params.menuId)
+    store.commit("setCurrentMenu", {item: menu});
+  }
+
+  public get currentMenu() {
     return this.$store.state.currentMenu;
-  }
-
-  public set menuId(value: number) {
-    this.$store.dispatch('setCurrentOrderFromMenuId', { id: value });
-  }
-
-  public get menuId() {
-    return 1;
   }
 }
 </script>

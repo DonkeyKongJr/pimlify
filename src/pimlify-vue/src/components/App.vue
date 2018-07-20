@@ -24,7 +24,7 @@
             </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile to="/menu/1">
+        <v-list-tile to="/menu">
           <v-list-tile-action>
             <font-awesome-icon icon="home" />
           </v-list-tile-action>

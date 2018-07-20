@@ -44,11 +44,12 @@ new Vue({
   el: '#app',
   store,
   router,
-  render: h => h(App)
+  render: h => h(App),
+  created: () => {
+        // Lets load all menus :D
+    store.dispatch('loadMenus');
+    store.dispatch('loadRestaurants');
+  }
 });
 
-// Lets load all menus :D
-store.dispatch('loadMenus');
-store.dispatch('loadRestaurants');
 
-store.commit('setCurrentMenu', { item: store.state.menus });

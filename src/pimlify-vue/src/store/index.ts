@@ -7,10 +7,12 @@ import mutations from "./mutations";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store<State>({
+const store =  new Vuex.Store<State>({
   state: new State(),
   actions: actions,
   mutations: mutations
 });
+
+export default store;
 
 export * from "./mutation-types";
