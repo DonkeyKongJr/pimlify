@@ -31,7 +31,7 @@ const actions: ActionTree<State, State> = {
 
     db.collection('restaurant')
       .get()
-      .then(function(querySnapshot) {
+      .then(querySnapshot => {
         querySnapshot.forEach(function(doc) {
           const restaurant = doc.data() as Restaurant;
           restaurant.id = doc.id;
