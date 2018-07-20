@@ -32,7 +32,7 @@ const actions: ActionTree<State, State> = {
     db.collection('restaurant')
       .get()
       .then(querySnapshot => {
-        querySnapshot.forEach(function(doc) {
+        querySnapshot.forEach(doc =>  {
           const restaurant = doc.data() as Restaurant;
           restaurant.id = doc.id;
           restaurants.push(restaurant);
