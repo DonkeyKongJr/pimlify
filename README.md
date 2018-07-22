@@ -16,7 +16,11 @@ Start development
 
 `npm start`
 
-### Deployment to Firebase Hosting
+Build Project
+
+`npm run build`
+
+### Deployment
 
 Install Firebase command line tools
 

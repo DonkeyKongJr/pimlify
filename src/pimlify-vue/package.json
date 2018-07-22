@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/parcel-bundler/bin/cli.js index.html",
-    "build": "./node_modules/parcel-bundler/bin/cli.js build index.html"
+    "start": "parcel index.html",
+    "build": "parcel build"
   },
   "repository": {
     "type": "git",
