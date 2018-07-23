@@ -28,3 +28,10 @@ export class Restaurant {
   public name: string = '';
   public location: string = '';
 }
+
+export class User {
+  public firstname: string = '';
+  public lastname: string = '';
+  public email: string = '';
+  public password: string = '';
+}
