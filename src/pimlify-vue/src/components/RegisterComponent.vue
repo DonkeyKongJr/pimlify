@@ -1,5 +1,6 @@
 <template>
- <v-form ref="form" style='width:50%' v-model="valid">
+<div style='width:50%'>
+ <v-form ref="form" v-model="valid">
     <v-text-field
       v-model="user.firstname"
       :rules="nameRules"
@@ -32,17 +33,35 @@
     </v-btn>
     <v-btn @click="clear">clear</v-btn>
   </v-form>
+  <v-alert
+      :value="successAlert"
+      type="success"
+      transition="scale-transition"
+    >
+      Register successful.
+    </v-alert>
+       <v-alert
+      :value="errorAlert"
+      type="error"
+    >
+      Error in Register Process. Please try again or contact administrator. <br /> 
+      Detailed Message: {{errorMessage}}
+    </v-alert>
+</div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import value from '*.json';
 import { User } from '../store';
+import firebase from 'firebase';
 
 @Component
 export default class RegisterComponent extends Vue {
   public user: User = new User();
+  public errorAlert: boolean = false;
+  public successAlert: boolean = false;
+  public errorMessage: string = '';
 
   public emailRules = [
     (v: any) => !!v || 'E-mail is required',
@@ -55,15 +74,24 @@ export default class RegisterComponent extends Vue {
   ];
 
   public submit() {
-    console.log('Submit was clicked');
-
     if ((this.$refs.form as any).validate()) {
-      console.log('Validated' + this.user.email);
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.user.email, this.user.password)
+        .then(() => {
+          this.clear();
+          this.successAlert = true;
+          this.errorAlert = false;
+        })
+        .catch(error => {
+          this.errorMessage = error.message;
+          this.successAlert = false;
+          this.errorAlert = true;
+        });
     }
   }
 
   public clear() {
-    console.log('Clear clicked');
     (this.$refs.form as any).reset();
   }
 }
