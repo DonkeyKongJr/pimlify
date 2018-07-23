@@ -30,11 +30,11 @@ Component.registerHooks(["beforeRouteEnter"])
 @Component
 export default class OrderMenu extends Vue {
   beforeRouteEnter(to: Route, from: Route, next: (() => void)) {
-    return store.dispatch("loadRestaurants").then(()=>{
-    let menu = store.state.restaurants.find(m => m.id === to.params.restaurantId)
-    store.commit("setCurrentRestaurant", {item: menu});
-    next();
-    })
+    return store.dispatch("loadRestaurants").then(() => {
+      let menu = store.state.restaurants.find(m => m.id === to.params.restaurantId)
+      store.commit("setCurrentRestaurant", {item: menu});
+      next();
+    });
   }
 
   public get currentRestaurant(){
