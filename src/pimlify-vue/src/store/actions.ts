@@ -1,6 +1,6 @@
 import State from "./state";
 import { ActionTree, ActionContext } from "vuex";
-import { Menu, AvailableItem, Restaurant } from "./mutation-types";
+import { AvailableItem, Restaurant } from "./mutation-types";
 import { db } from "../main";
 
 const actions: ActionTree<State, State> = {

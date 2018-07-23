@@ -7,6 +7,13 @@ const mutations: MutationTree<State> = {
   },
   setRestaurants(state, { items }) {
     state.restaurants = items;
+  },
+  addOrderItem(state, {restaurantId,item}){
+
+    let restaurant = state.restaurants.filter(res => res.id === restaurantId);
+    if(restaurant){
+      restaurant[0].menu.push(item);
+    }
   }
 };
 

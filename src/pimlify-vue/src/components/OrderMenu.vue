@@ -26,7 +26,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import store, { Menu as OrderMenuModel } from "../store";
+import store from "../store";
 import { Route } from "vue-router";
 
 Component.registerHooks(["beforeRouteEnter"])

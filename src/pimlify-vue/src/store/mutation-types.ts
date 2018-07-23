@@ -4,15 +4,6 @@ export class Order {
   public count: number = 0;
 }
 
-export class Menu {
-  public constructor(
-    public id: string,
-    public availableItems: AvailableItem[] = []
-  ) {}
-  public description: string = "";
-  public restaurant: string = "";
-}
-
 export class AvailableItem {
   public constructor(
     public title: string,
@@ -28,4 +19,5 @@ export class Restaurant {
   public id: string = "";
   public name: string = "";
   public location: string = "";
+  public menu: AvailableItem[] = [];
 }
