@@ -17,7 +17,8 @@ import {
   faHome,
   faBookOpen,
   faPlus,
-  faMinus
+  faMinus,
+  faSave
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -25,7 +26,7 @@ import store from './store';
 import router from './router';
 import { firebaseConfig } from './firebase-config';
 
-library.add(faUtensils, faCoffee, faHome, faBookOpen, faPlus, faMinus);
+library.add(faUtensils, faCoffee, faHome, faBookOpen, faPlus, faMinus, faSave);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

@@ -2,6 +2,9 @@
 <v-card>
     <v-card-title>
         {{currentRestaurant.name}}
+        <v-btn flat icon color="black" @click="save(currentRestaurant)">
+          <font-awesome-icon  icon="save" />  
+        </v-btn>
     </v-card-title>
     <v-data-table
     :items="currentRestaurant.menu"
@@ -21,7 +24,7 @@
   </v-data-table>
   <v-layout row justify-center>
     <v-dialog v-model="isAddItemDialogOpen" persistent max-width="290">
-      <v-btn slot="activator" color="primary" block dark @click="addItem = {}">Add new item</v-btn>
+      <v-btn slot="activator" block dark @click="addItem = {}">Add new item</v-btn>
       <v-card>
         <v-card-title class="headline">Add new item</v-card-title>
         <v-card-text>
@@ -53,21 +56,27 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import store, { Order } from "../store";
+import store, { Order, Restaurant } from "../store";
 import { Route } from "vue-router";
 
 Component.registerHooks(["beforeRouteEnter"]);
 
 @Component
 export default class OrderMenu extends Vue {
+  public isAddItemDialogOpen: boolean = false;
+  public addItem: Order = new Order();
+
+  public get currentRestaurant() {
+    return this.$store.getters.getRestaurantById(
+      this.$route.params.restaurantId
+    );
+  }
+
   beforeRouteEnter(to: Route, from: Route, next: (() => void)) {
     return store.dispatch("loadRestaurants").then(() => {
       next();
     });
   }
-
-  public isAddItemDialogOpen: boolean = false;
-  public addItem: Order = new Order();
 
   public createItem(order: Order) {
     store.commit("addOrderItem", {
@@ -77,10 +86,8 @@ export default class OrderMenu extends Vue {
     this.isAddItemDialogOpen = false;
   }
 
-  public get currentRestaurant() {
-    return this.$store.getters.getRestaurantById(
-      this.$route.params.restaurantId
-    );
+  public save(restaurant: Restaurant){
+    this.$store.dispatch("saveRestaurant", {restaurant: restaurant});
   }
 }
 </script>

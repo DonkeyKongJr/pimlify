@@ -5,7 +5,8 @@ import { db } from "../main";
 
 const actions: ActionTree<State, State> = {
   loadRestaurants({ commit, state }) {
-    return db.collection("restaurant")
+    return db
+      .collection("restaurant")
       .get()
       .then(querySnapshot => {
         let restaurants: Restaurant[] = [];
@@ -16,6 +17,9 @@ const actions: ActionTree<State, State> = {
         });
         commit("setRestaurants", { items: restaurants });
       });
+  },
+  saveRestaurant({ commit, state }, { restaurant }) {
+    return db.collection("restaurant").doc(restaurant.id).set(restaurant);
   }
 };
 
