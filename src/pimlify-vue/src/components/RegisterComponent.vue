@@ -41,7 +41,7 @@
       Register successful.
     </v-alert>
        <v-alert
-      :value="errorAlert"
+      :value="this.errorMessage"
       type="error"
     >
       Error in Register Process. Please try again or contact administrator. <br /> 
@@ -60,7 +60,6 @@ import { db } from '../main';
 @Component
 export default class RegisterComponent extends Vue {
   public user: User = new User();
-  public errorAlert: boolean = false;
   public successAlert: boolean = false;
   public errorMessage: string = '';
 
@@ -83,12 +82,11 @@ export default class RegisterComponent extends Vue {
           this.createAdditionalUserData(data.user);
           this.clear();
           this.successAlert = true;
-          this.errorAlert = false;
+          this.errorMessage = '';
         })
         .catch(error => {
           this.errorMessage = error.message;
           this.successAlert = false;
-          this.errorAlert = true;
         });
     }
   }
