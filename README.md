@@ -24,7 +24,7 @@ Build Project
 
 Install Firebase command line tools
 
-`npm install -g firebase-tools`
+`npm install firebase-tools`
 
 Login and Deploy
 
