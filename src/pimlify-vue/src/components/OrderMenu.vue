@@ -19,30 +19,68 @@
       </td>
     </template>
   </v-data-table>
-  <v-btn block><font-awesome-icon icon="plus" /> Add new Item</v-btn>
+  <v-layout row justify-center>
+    <v-dialog v-model="isAddItemDialogOpen" persistent max-width="290">
+      <v-btn slot="activator" color="primary" block dark @click="addItem = {}">Add new item</v-btn>
+      <v-card>
+        <v-card-title class="headline">Add new item</v-card-title>
+        <v-card-text>
+          <v-form ref="form" v-if="addItem !== undefined">
+            <v-text-field
+              v-model="addItem.title"
+              label="Name"
+              required
+            ></v-text-field>
+            <v-text-field
+              v-model="addItem.price"
+              label="Price"
+              type="number"
+              required
+            ></v-text-field>
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="orange darken-1" flat @click.native="createItem(addItem)">Add new item</v-btn>
+          <v-btn color="orange darken-1" flat @click.native="isAddItemDialogOpen = false">Cancel</v-btn>
+        </v-card-actions>
+      </v-card>      
+    </v-dialog>
+  </v-layout>
 </v-card>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import store from "../store";
+import store, { Order } from "../store";
 import { Route } from "vue-router";
 
-Component.registerHooks(["beforeRouteEnter"])
+Component.registerHooks(["beforeRouteEnter"]);
 
 @Component
 export default class OrderMenu extends Vue {
   beforeRouteEnter(to: Route, from: Route, next: (() => void)) {
     return store.dispatch("loadRestaurants").then(() => {
-      let menu = store.state.restaurants.find(m => m.id === to.params.restaurantId)
-      store.commit("setCurrentRestaurant", {item: menu});
       next();
     });
   }
 
-  public get currentRestaurant(){
-    return this.$store.state.currentRestaurant;
+  public isAddItemDialogOpen: boolean = false;
+  public addItem: Order = new Order();
+
+  public createItem(order: Order) {
+    store.commit("addOrderItem", {
+      restaurantId: this.currentRestaurant.id,
+      order: order
+    });
+    this.isAddItemDialogOpen = false;
+  }
+
+  public get currentRestaurant() {
+    return this.$store.getters.getRestaurantById(
+      this.$route.params.restaurantId
+    );
   }
 }
 </script>
