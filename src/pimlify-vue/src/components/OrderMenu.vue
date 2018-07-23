@@ -14,8 +14,12 @@
       <td class="text-xs-right">{{ props.item.title }}</td>
       <td class="text-xs-right">{{ props.item.price }}</td>
       <td class="text-xs-right">{{ props.item.allergenic }}</td>
+      <td class="text-xs-right">        
+        <v-btn small fab><font-awesome-icon icon="plus" /></v-btn>
+      </td>
     </template>
   </v-data-table>
+  <v-btn block><font-awesome-icon icon="plus" /> Add new Item</v-btn>
 </v-card>
 </template>
 
