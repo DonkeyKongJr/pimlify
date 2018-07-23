@@ -1,4 +1,5 @@
 # pimlify
+
 A vue pwa to take orders for our most favorite restaurant. All data is stored in firebase.
 
 ![alt text](https://travis-ci.com/DonkeyKongJr/pimlify.svg?branch=master)
@@ -18,3 +19,15 @@ Start development
 Build Project
 
 `npm run build`
+
+### Deployment
+
+Install Firebase command line tools
+
+`npm install firebase-tools`
+
+Login and Deploy
+
+`firebase login`
+
+`firebase deploy`
