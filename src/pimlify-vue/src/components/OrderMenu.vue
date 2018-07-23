@@ -28,12 +28,12 @@ import { Route } from "vue-router";
 @Component
 export default class OrderMenu extends Vue {
   beforeRouteEnter(to: Route, from: Route, next: (() => void)) {
-    let menu = store.state.menus.find(m => m.id === to.params.menuId)
-    store.commit("setCurrentMenu", {item: menu});
+    let menu = store.state.restaurants.find(m => m.id === to.params.restaurantId)
+    store.commit("setCurrentRestaurant", {item: menu});
   }
 
   public get currentMenu() {
-    return this.$store.state.currentMenu;
+    return this.$store.state.currentRestaurant.menu;
   }
 }
 </script>

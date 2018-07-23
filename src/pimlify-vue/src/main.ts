@@ -46,9 +46,7 @@ new Vue({
   router,
   render: h => h(App),
   created: () => {
-        // Lets load all menus :D
-    store.dispatch('loadMenus');
-    store.dispatch('loadRestaurants');
+    return store.dispatch('loadRestaurants');
   }
 });
 

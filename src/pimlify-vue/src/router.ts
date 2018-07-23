@@ -8,7 +8,7 @@ Component.registerHooks(['beforeRouteEnter']);
 
 const routes = [
   {
-    path: '/menu/:menuId',
+    path: '/menu/:restaurantId',
     component: OrderMenu,
     name: 'menu',
     props: true
