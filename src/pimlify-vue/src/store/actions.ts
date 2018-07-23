@@ -4,12 +4,6 @@ import { Menu, AvailableItem, Restaurant } from "./mutation-types";
 import { db } from "../main";
 
 const actions: ActionTree<State, State> = {
-  // setCurrentOrderFromMenuId({ commit, state }, { id }) {
-  //   let restaurants = state.restaurants.filter(item => item.id === id);
-  //   if (restaurants.length > 0) {
-  //     commit("setCurrentRestaurant", { item: restaurants[0] });
-  //   }
-  // },
   loadRestaurants({ commit, state }) {
     return db.collection("restaurant")
       .get()

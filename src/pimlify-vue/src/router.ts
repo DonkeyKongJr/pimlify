@@ -10,8 +10,7 @@ const routes = [
   {
     path: '/menu/:restaurantId',
     component: OrderMenu,
-    name: 'menu',
-    props: true
+    name: 'menu'
   },
   {
     path: '/restaurant',

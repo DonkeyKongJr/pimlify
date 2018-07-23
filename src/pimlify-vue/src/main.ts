@@ -46,7 +46,7 @@ new Vue({
   router,
   render: h => h(App),
   created: () => {
-    return store.dispatch('loadRestaurants');
+    store.dispatch('loadRestaurants');
   }
 });
 

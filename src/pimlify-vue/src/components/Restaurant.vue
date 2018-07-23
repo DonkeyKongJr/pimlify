@@ -13,7 +13,6 @@
       <td>{{ props.item.name }}</td>
       <td>{{ props.item.location }}</td>
       <td><v-btn :to="{name:'menu',params:{restaurantId: props.item.id}}">Show Menu</v-btn></td>
-
     </template>
   </v-data-table>
 </v-card>
