@@ -55,6 +55,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { User } from '../store';
 import firebase from 'firebase';
+import { db } from '../main';
 
 @Component
 export default class RegisterComponent extends Vue {
@@ -78,7 +79,8 @@ export default class RegisterComponent extends Vue {
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.user.email, this.user.password)
-        .then(() => {
+        .then(data => {
+          this.createAdditionalUserData(data.user);
           this.clear();
           this.successAlert = true;
           this.errorAlert = false;
@@ -93,6 +95,20 @@ export default class RegisterComponent extends Vue {
 
   public clear() {
     (this.$refs.form as any).reset();
+  }
+
+  private createAdditionalUserData(firebaseUser: firebase.User | null) {
+    if (!firebaseUser) {
+      return;
+    }
+
+    db
+      .collection('user')
+      .doc(firebaseUser.uid)
+      .set({
+        firstname: this.user.firstname,
+        lastname: this.user.lastname
+      });
   }
 }
 </script>
