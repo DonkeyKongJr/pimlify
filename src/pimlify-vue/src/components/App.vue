@@ -24,16 +24,6 @@
             </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile to="/menu/1">
-          <v-list-tile-action>
-            <font-awesome-icon icon="home" />
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>
-              Menu
-            </v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar color="orange" dark fixed app>
@@ -61,10 +51,6 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 @Component
 export default class App extends Vue {
-  public get message() {
-    return this.$store.state.message;
-  }
-
   public drawer: boolean = false;
 }
 </script>

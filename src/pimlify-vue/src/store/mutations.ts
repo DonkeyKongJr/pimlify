@@ -1,16 +1,17 @@
 import { MutationTree } from 'vuex';
 import State from './state';
-import { OrderMenu } from './mutation-types';
+import { AutoId} from "../auto-id";
 
 const mutations: MutationTree<State> = {
-  setOrderMenus(state, { items }) {
-    state.orderMenus = items;
-  },
-  setCurrentOrderMenu(state, { item }) {
-    state.currentOrderMenu = item;
-  },
   setRestaurants(state, { items }) {
     state.restaurants = items;
+  },
+  addOrderItem(state, {restaurantId,order}){
+    let restaurant = state.restaurants.find(res => res.id === restaurantId);
+    if(restaurant){
+      order.id = AutoId.newId();
+      restaurant.menu.push(order);
+    }
   }
 };
 

@@ -1,24 +1,32 @@
-import OrderMenu from './components/OrderMenu.vue';
-import RestaurantComponent from './components/RestaurantComponent.vue';
-import RegisterComponent from './components/RegisterComponent.vue';
+import OrderMenu from "./components/OrderMenu.vue";
+import Restaurant from "./components/Restaurant.vue";
+import RegisterComponent from "./components/RegisterComponent.vue";
+import Home from "./components/Home.vue";
+import VueRouter from "vue-router";
+import Component from "vue-class-component";
 
-import VueRouter from 'vue-router';
+Component.registerHooks(["beforeRouteEnter"]);
 
 const routes = [
   {
-    path: '/menu/:menuId',
+    path: "/menu/:restaurantId",
     component: OrderMenu,
-    name: 'menu'
+    name: "menu"
   },
   {
-    path: '/restaurant',
-    component: RestaurantComponent,
-    name: 'restaurant'
+    path: "/restaurant",
+    component: Restaurant,
+    name: "restaurant"
   },
   {
-    path: '/register',
+    path: "/",
+    component: Home,
+    name: "home"
+  },
+  {
+    path: "/register",
     component: RegisterComponent,
-    name: 'register'
+    name: "register"
   }
 ];
 
