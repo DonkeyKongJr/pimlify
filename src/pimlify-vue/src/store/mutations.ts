@@ -12,6 +12,9 @@ const mutations: MutationTree<State> = {
       order.id = AutoId.newId();
       restaurant.menu.push(order);
     }
+  },
+  setUser(state, { item }) {
+    state.userInfo = item;
   }
 };
 

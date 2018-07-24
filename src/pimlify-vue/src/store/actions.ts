@@ -1,6 +1,6 @@
 import { ActionTree } from 'vuex';
 import { db } from '../main';
-import { Restaurant } from './mutation-types';
+import { Restaurant, User } from './mutation-types';
 import State from './state';
 
 const actions: ActionTree<State, State> = {
@@ -23,6 +23,22 @@ const actions: ActionTree<State, State> = {
       .collection('restaurant')
       .doc(restaurant.id)
       .set(restaurant);
+
+    const restaurantMock = new Restaurant();
+    restaurantMock.name = 'test';
+  },
+  getAdditionalUserData({ commit, state }, { id }) {
+    db.collection('user')
+      .doc(id)
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot.exists) {
+          const user = querySnapshot.data() as User;
+          commit('setUser', { item: user });
+        } else {
+          console.log('user document does not exist');
+        }
+      });
   }
 };
 

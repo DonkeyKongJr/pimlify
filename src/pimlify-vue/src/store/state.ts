@@ -1,6 +1,7 @@
-import { Order, Restaurant } from './mutation-types';
+import { Order, Restaurant, User } from './mutation-types';
 
 export default class State {
   public orders: Order[] = [];
   public restaurants: Restaurant[] = [];
+  public userInfo: User | undefined = undefined;
 }
