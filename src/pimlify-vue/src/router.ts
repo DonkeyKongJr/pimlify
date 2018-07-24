@@ -21,12 +21,12 @@ const routes = [
   {
     component: Home,
     name: 'home',
-    path: '/',
+    path: '/'
   },
   {
     component: RegisterComponent,
     name: 'register',
-    path: '/register',
+    path: '/register'
   }
 ];
 
