@@ -17,4 +17,4 @@ const store = new Vuex.Store<State>({
 
 export default store;
 
-export * from './mutation-types';
+export * from './models';
