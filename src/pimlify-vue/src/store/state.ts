@@ -1,4 +1,4 @@
-import { Order, AvailableItem, Restaurant } from './mutation-types';
+import { Order, Restaurant } from './mutation-types';
 
 export default class State {
   public orders: Order[] = [];

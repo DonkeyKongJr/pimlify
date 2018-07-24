@@ -63,10 +63,7 @@ export default class RegisterComponent extends Vue {
   public successAlert: boolean = false;
   public errorMessage: string = '';
 
-  public emailRules = [
-    (v: any) => !!v || 'E-mail is required',
-    (v: any) => /.+@.+/.test(v) || 'E-mail must be valid'
-  ];
+  public emailRules = [(v: any) => !!v || 'E-mail is required', (v: any) => /.+@.+/.test(v) || 'E-mail must be valid'];
 
   public nameRules = [
     (v: any) => !!v || 'Name is required',
