@@ -2,6 +2,7 @@ import State from './state';
 import { ActionTree, ActionContext } from 'vuex';
 import { OrderMenu, AvailableOrder, Restaurant, User } from './mutation-types';
 import { db } from '../main';
+import firebase from 'firebase';
 
 const actions: ActionTree<State, State> = {
   loadAllOrderMenus({ commit, state }) {

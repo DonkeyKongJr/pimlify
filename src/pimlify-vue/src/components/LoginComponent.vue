@@ -1,6 +1,6 @@
 <template>
 <div style='width:50%'>
- <v-form ref="form" v-model="valid">
+ <v-form ref="form" v-model="valid" v-if="!isUserLoggedIn">
     <v-text-field
       v-model="user.email"
       :rules="emailRules"
@@ -16,7 +16,7 @@
     ></v-text-field>
       <v-btn
       :disabled="!valid"
-      @click="submit"
+      @click="login"
     >
       Login
     </v-btn>
@@ -36,6 +36,10 @@
       Error in Login Process. Please try again or contact administrator.<br /> 
       Detailed Message: {{errorMessage}}
     </v-alert>
+    <div v-if="isUserLoggedIn && userInfo.firstname">
+      <h2>Hello {{userInfo !== undefined ? userInfo.firstname : ''}}</h2><br/>
+      <v-btn  @click="logout">Logout</v-btn>
+    </div>
 </div>
 </template>
 
@@ -52,6 +56,12 @@ export default class LoginComponent extends Vue {
   public user: User = new User();
   public successAlert: boolean = false;
   public errorMessage: string = '';
+  public isUserLoggedIn: boolean = false;
+
+  constructor() {
+    super();
+    this.getUserAuthState();
+  }
 
   public emailRules = [
     (v: any) => !!v || 'E-mail is required',
@@ -60,18 +70,17 @@ export default class LoginComponent extends Vue {
 
   public passwordRules = [(v: any) => !!v || 'Password is required'];
 
-  public submit() {
+  public get userInfo() {
+    return this.$store.state.userInfo as User;
+  }
+
+  public login() {
     if ((this.$refs.form as any).validate()) {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.user.email, this.user.password)
         .then(data => {
-          console.log(data.user);
           this.errorMessage = '';
-
-          this.$store.dispatch('getAdditionalUserData', {
-            id: data.user.uid
-          });
         })
         .catch(error => {
           this.errorMessage = error.message;
@@ -79,8 +88,33 @@ export default class LoginComponent extends Vue {
     }
   }
 
+  public logout() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        this.errorMessage = '';
+      })
+      .catch(error => {
+        this.errorMessage = error.message;
+      });
+  }
+
   public clear() {
     (this.$refs.form as any).reset();
+  }
+
+  private getUserAuthState() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$store.dispatch('getAdditionalUserData', {
+          id: user.uid
+        });
+        this.isUserLoggedIn = user !== undefined ? true : false;
+      } else {
+        this.isUserLoggedIn = false;
+      }
+    });
   }
 }
 </script>
