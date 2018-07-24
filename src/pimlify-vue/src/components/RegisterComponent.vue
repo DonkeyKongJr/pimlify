@@ -70,7 +70,7 @@ export default class RegisterComponent extends Vue {
 
   public nameRules = [
     (v: any) => !!v || 'Name is required',
-    (v: any) => (v && v.length > 3) || 'Name must be more than 3 characters'
+    (v: any) => (v && v.length > 2) || 'Name must be more than 2 characters'
   ];
 
   public submit() {
