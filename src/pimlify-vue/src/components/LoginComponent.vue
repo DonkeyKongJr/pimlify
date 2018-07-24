@@ -45,6 +45,7 @@ import Component from 'vue-class-component';
 import { User } from '../store';
 import firebase from 'firebase';
 import { db } from '../main';
+import store from '../store';
 
 @Component
 export default class LoginComponent extends Vue {
@@ -57,23 +58,24 @@ export default class LoginComponent extends Vue {
     (v: any) => /.+@.+/.test(v) || 'E-mail must be valid'
   ];
 
-    public passwordRules = [
-    (v: any) => !!v || 'Password is required'
-  ];
+  public passwordRules = [(v: any) => !!v || 'Password is required'];
 
   public submit() {
     if ((this.$refs.form as any).validate()) {
-      console.log('valid input');
-         firebase
-      .auth()
-      .signInWithEmailAndPassword(this.user.email, this.user.password)
-      .then(data => {
-        console.log(data.user);
-         this.errorMessage = '';
-      })
-      .catch(error => {
-        this.errorMessage = error.message;
-      });
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.user.email, this.user.password)
+        .then(data => {
+          console.log(data.user);
+          this.errorMessage = '';
+
+          this.$store.dispatch('getAdditionalUserData', {
+            id: data.user.uid
+          });
+        })
+        .catch(error => {
+          this.errorMessage = error.message;
+        });
     }
   }
 
