@@ -81,6 +81,7 @@ export default class LoginComponent extends Vue {
         .signInWithEmailAndPassword(this.user.email, this.user.password)
         .then(data => {
           this.errorMessage = '';
+          this.clear();
         })
         .catch(error => {
           this.errorMessage = error.message;
