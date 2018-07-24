@@ -1,45 +1,25 @@
-import State from './state';
-import { ActionTree, ActionContext } from 'vuex';
-import { OrderMenu, AvailableOrder, Restaurant, User } from './mutation-types';
-import { db } from '../main';
-import firebase from 'firebase';
+import State from "./state";
+import { ActionTree, ActionContext } from "vuex";
+import { AvailableItem, Restaurant } from "./mutation-types";
+import { db } from "../main";
 
 const actions: ActionTree<State, State> = {
-  loadAllOrderMenus({ commit, state }) {
-    let orderMenus = new OrderMenu(1, 'Pims Thai Küche', [
-      new AvailableOrder('01', 'Test Eins', 5),
-      new AvailableOrder('02', 'Bab Ma Guk', 4.8),
-      new AvailableOrder('03', 'Pappo', 7.4),
-      new AvailableOrder('04', 'Testo', 4.5),
-      new AvailableOrder('05', 'Pasta', 4.2),
-      new AvailableOrder('06', 'Te Stein S', 8.3),
-      new AvailableOrder('07', 'De la dada', 3.5),
-      new AvailableOrder('08', 'Tallaesto', 5.9),
-      new AvailableOrder('09', 'Gatto Te', 3.5),
-      new AvailableOrder('10', 'Ado Amore', 1.1)
-    ]);
-
-    commit('setOrderMenus', { items: orderMenus });
-  },
-  setCurrentOrderFromMenuId({ commit, state }, { id }) {
-    let menus = state.orderMenus.filter(item => item.id === id);
-    if (menus.length > 0) {
-      commit('setCurrentOrderMenu', { item: menus[0] });
-    }
-  },
-  loadAllRestaurantsFromFireBase({ commit, state }) {
-    let restaurants: Restaurant[] = [];
-
-    db.collection('restaurant')
+  loadRestaurants({ commit, state }) {
+    return db
+      .collection("restaurant")
       .get()
       .then(querySnapshot => {
+        let restaurants: Restaurant[] = [];
         querySnapshot.forEach(doc => {
           const restaurant = doc.data() as Restaurant;
           restaurant.id = doc.id;
           restaurants.push(restaurant);
         });
-        commit('setRestaurants', { items: restaurants });
+        commit("setRestaurants", { items: restaurants });
       });
+  },
+  saveRestaurant({ commit, state }, { restaurant }) {
+    return db.collection("restaurant").doc(restaurant.id).set(restaurant);
 
     const restaurantMock = new Restaurant();
     restaurantMock.name = 'test';

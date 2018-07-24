@@ -10,30 +10,25 @@
     hide-actions
   >
     <template slot="items" slot-scope="props">
-      <td>{{ props.item.id }}</td>
       <td>{{ props.item.name }}</td>
       <td>{{ props.item.location }}</td>
-
+      <td><v-btn :to="{name:'menu',params:{restaurantId: props.item.id}}">Show Menu</v-btn></td>
     </template>
   </v-data-table>
 </v-card>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
+import Vue from "vue";
+import Component from "vue-class-component";
 
 @Component
-export default class RestaurantComponent extends Vue {
-  data() {
-    return {
-      headers: [
-        { text: 'Id', value: 'id', sortable: false },
-        { text: 'Name', value: 'name' },
-        { text: 'Location', value: 'location' }
-      ]
-    };
-  }
+export default class Restaurat extends Vue {
+  public headers = [
+    { text: "Name", value: "name" },
+    { text: "Location", value: "location" },
+    { text: "Actions", value: "id"}
+  ];
   public get restaurants() {
     return this.$store.state.restaurants;
   }
