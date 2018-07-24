@@ -1,18 +1,6 @@
 <template>
 <div style='width:50%'>
- <v-form ref="form" v-model="valid">
-    <v-text-field
-      v-model="user.firstname"
-      :rules="nameRules"
-      label="First name"
-      required
-    ></v-text-field>
-    <v-text-field
-      v-model="user.lastname"
-      :rules="nameRules"
-      label="Last name"
-      required
-    ></v-text-field>
+ <v-form ref="form" v-model="valid" v-if="!isUserLoggedIn">
     <v-text-field
       v-model="user.email"
       :rules="emailRules"
@@ -21,15 +9,16 @@
     ></v-text-field>
     <v-text-field
       v-model="user.password"
+      :rules="passwordRules"
       :type="'password'"
       label="Password"
       required
     ></v-text-field>
       <v-btn
       :disabled="!valid"
-      @click="submit"
+      @click="login"
     >
-      Register
+      Login
     </v-btn>
     <v-btn @click="clear">clear</v-btn>
   </v-form>
@@ -38,15 +27,19 @@
       type="success"
       transition="scale-transition"
     >
-      Register successful.
+      Login successful.
     </v-alert>
        <v-alert
       :value="this.errorMessage"
       type="error"
     >
-      Error in Register Process. Please try again or contact administrator. <br /> 
+      Error in Login Process. Please try again or contact administrator.<br /> 
       Detailed Message: {{errorMessage}}
     </v-alert>
+    <div v-if="isUserLoggedIn && userInfo.firstname">
+      <h2>Hello {{userInfo !== undefined ? userInfo.firstname : ''}}</h2><br/>
+      <v-btn  @click="logout">Logout</v-btn>
+    </div>
 </div>
 </template>
 
@@ -56,60 +49,75 @@ import Component from 'vue-class-component';
 import { User } from '../store';
 import firebase from 'firebase';
 import { db } from '../main';
+import store from '../store';
 
 @Component
-export default class RegisterComponent extends Vue {
+export default class LoginComponent extends Vue {
   public user: User = new User();
   public successAlert: boolean = false;
   public errorMessage: string = '';
+  public isUserLoggedIn: boolean = false;
+
+  constructor() {
+    super();
+    this.getUserAuthState();
+  }
 
   public emailRules = [
     (v: any) => !!v || 'E-mail is required',
     (v: any) => /.+@.+/.test(v) || 'E-mail must be valid'
   ];
 
-  public nameRules = [
-    (v: any) => !!v || 'Name is required',
-    (v: any) => (v && v.length > 3) || 'Name must be more than 3 characters'
-  ];
+  public passwordRules = [(v: any) => !!v || 'Password is required'];
 
-  public submit() {
+  public get userInfo() {
+    return this.$store.state.userInfo as User;
+  }
+
+  public login() {
     if ((this.$refs.form as any).validate()) {
       firebase
         .auth()
-        .createUserWithEmailAndPassword(this.user.email, this.user.password)
+        .signInWithEmailAndPassword(this.user.email, this.user.password)
         .then(data => {
-          this.createAdditionalUserData(data.user);
-          this.clear();
-          this.successAlert = true;
           this.errorMessage = '';
+          this.clear();
         })
         .catch(error => {
           this.errorMessage = error.message;
-          this.successAlert = false;
         });
     }
+  }
+
+  public logout() {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        this.errorMessage = '';
+      })
+      .catch(error => {
+        this.errorMessage = error.message;
+      });
   }
 
   public clear() {
     (this.$refs.form as any).reset();
   }
 
-  private createAdditionalUserData(firebaseUser: firebase.User | null) {
-    if (!firebaseUser) {
-      return;
-    }
-
-    db
-      .collection('user')
-      .doc(firebaseUser.uid)
-      .set({
-        firstname: this.user.firstname,
-        lastname: this.user.lastname
-      });
+  private getUserAuthState() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$store.dispatch('getAdditionalUserData', {
+          id: user.uid
+        });
+        this.isUserLoggedIn = user !== undefined ? true : false;
+      } else {
+        this.isUserLoggedIn = false;
+      }
+    });
   }
 }
 </script>
-
 <style>
 </style>

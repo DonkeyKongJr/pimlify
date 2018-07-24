@@ -1,1 +1,9 @@
-{ "extends": ["tslint:latest", "tslint-config-prettier"] }
+{
+    "defaultSeverity": "error",
+    "extends": ["tslint:latest", "tslint-config-prettier"],
+    "jsRules": {},
+    "rules": {
+        "quotemark": [true, "single"]
+    },
+    "rulesDirectory": []
+}
