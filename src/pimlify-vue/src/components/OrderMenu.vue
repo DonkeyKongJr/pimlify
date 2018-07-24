@@ -63,30 +63,30 @@ Component.registerHooks(['beforeRouteEnter']);
 
 @Component
 export default class OrderMenu extends Vue {
-    public isAddItemDialogOpen: boolean = false;
-    public addItem: Order = new Order();
+  public isAddItemDialogOpen: boolean = false;
+  public addItem: Order = new Order();
 
-    public get currentRestaurant() {
-        return this.$store.getters.getRestaurantById(this.$route.params.restaurantId);
-    }
+  public get currentRestaurant() {
+    return this.$store.getters.getRestaurantById(this.$route.params.restaurantId);
+  }
 
-    beforeRouteEnter(to: Route, from: Route, next: (() => void)) {
-        return store.dispatch('loadRestaurants').then(() => {
-            next();
-        });
-    }
+  beforeRouteEnter(to: Route, from: Route, next: (() => void)) {
+    return store.dispatch('loadRestaurants').then(() => {
+      next();
+    });
+  }
 
-    public createItem(order: Order) {
-        store.commit('addOrderItem', {
-            restaurantId: this.currentRestaurant.id,
-            order: order
-        });
-        this.isAddItemDialogOpen = false;
-    }
+  public createItem(order: Order) {
+    store.commit('addOrderItem', {
+      restaurantId: this.currentRestaurant.id,
+      order: order
+    });
+    this.isAddItemDialogOpen = false;
+  }
 
-    public save(restaurant: Restaurant) {
-        this.$store.dispatch('saveRestaurant', { restaurant: restaurant });
-    }
+  public save(restaurant: Restaurant) {
+    this.$store.dispatch('saveRestaurant', { restaurant: restaurant });
+  }
 }
 </script>
 

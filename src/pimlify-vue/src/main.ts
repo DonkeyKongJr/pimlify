@@ -1,30 +1,22 @@
 import Vue from 'vue';
-import App from './components/App.vue';
-import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
+import Vuetify from 'vuetify';
+import App from './components/App.vue';
 
-import 'vuetify/dist/vuetify.css';
-import VueFire from 'vuefire';
 import firebase from 'firebase';
 import 'firebase/firestore';
+import VueFire from 'vuefire';
+import 'vuetify/dist/vuetify.css';
 
 import './vuetify-fix.css';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faCoffee,
-  faUtensils,
-  faHome,
-  faBookOpen,
-  faPlus,
-  faMinus,
-  faSave
-} from '@fortawesome/free-solid-svg-icons';
+import { faBookOpen, faCoffee, faHome, faMinus, faPlus, faSave, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-import store from './store';
-import router from './router';
 import { firebaseConfig } from './firebase-config';
+import router from './router';
+import store from './store';
 
 library.add(faUtensils, faCoffee, faHome, faBookOpen, faPlus, faMinus, faSave);
 
@@ -40,14 +32,13 @@ export const db = firebase.firestore();
 const settings = { timestampsInSnapshots: true };
 db.settings(settings);
 
+// tslint:disable-next-line:no-unused-expression
 new Vue({
-  el: '#app',
-  store,
-  router,
-  render: h => h(App),
   created: () => {
     store.dispatch('loadRestaurants');
-  }
+  },
+  el: '#app',
+  render: h => h(App),
+  router,
+  store
 });
-
-

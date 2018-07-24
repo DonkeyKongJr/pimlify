@@ -1,20 +1,20 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-import State from "./state";
-import actions from "./actions";
-import mutations from "./mutations";
-import getters from "./getters";
+import actions from './actions';
+import getters from './getters';
+import mutations from './mutations';
+import State from './state';
 
 Vue.use(Vuex);
 
-const store =  new Vuex.Store<State>({
-  state: new State(),
-  actions: actions,
-  mutations: mutations,
-  getters: getters
+const store = new Vuex.Store<State>({
+  actions,
+  getters,
+  mutations,
+  state: new State()
 });
 
 export default store;
 
-export * from "./mutation-types";
+export * from './mutation-types';

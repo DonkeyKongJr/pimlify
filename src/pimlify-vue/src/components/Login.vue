@@ -63,10 +63,7 @@ export default class LoginComponent extends Vue {
     this.getUserAuthState();
   }
 
-  public emailRules = [
-    (v: any) => !!v || 'E-mail is required',
-    (v: any) => /.+@.+/.test(v) || 'E-mail must be valid'
-  ];
+  public emailRules = [(v: any) => !!v || 'E-mail is required', (v: any) => /.+@.+/.test(v) || 'E-mail must be valid'];
 
   public passwordRules = [(v: any) => !!v || 'Password is required'];
 
