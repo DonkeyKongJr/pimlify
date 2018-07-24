@@ -1,17 +1,7 @@
-<<<<<<< HEAD
-import {
-  Order,
-  OrderMenu,
-  AvailableOrder,
-  Restaurant,
-  User
-} from './mutation-types';
-=======
-import { Order, AvailableItem, Restaurant } from './mutation-types';
->>>>>>> master
+import { Order, AvailableItem, Restaurant, User } from './mutation-types';
 
 export default class State {
-  public orders: Order[] = [];
-  public restaurants: Restaurant[] = [];
-  public userInfo: User | undefined = undefined;
+    public orders: Order[] = [];
+    public restaurants: Restaurant[] = [];
+    public userInfo: User | undefined = undefined;
 }
