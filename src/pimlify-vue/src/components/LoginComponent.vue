@@ -64,28 +64,23 @@ export default class LoginComponent extends Vue {
   public submit() {
     if ((this.$refs.form as any).validate()) {
       console.log('valid input');
+         firebase
+      .auth()
+      .signInWithEmailAndPassword(this.user.email, this.user.password)
+      .then(data => {
+        console.log(data.user);
+         this.errorMessage = '';
+      })
+      .catch(error => {
+        this.errorMessage = error.message;
+      });
     }
   }
 
   public clear() {
     (this.$refs.form as any).reset();
   }
-
-  private createAdditionalUserData(firebaseUser: firebase.User | null) {
-    if (!firebaseUser) {
-      return;
-    }
-
-    db
-      .collection('user')
-      .doc(firebaseUser.uid)
-      .set({
-        firstname: this.user.firstname,
-        lastname: this.user.lastname
-      });
-  }
 }
 </script>
-
 <style>
 </style>
