@@ -23,7 +23,7 @@ Vue.use(Vuetify, {
   iconfont: 'fa'
 });
 Vue.use(VueFire);
-Vue.use(VueRouter);
+Vue.use(VueRouter); 
 
 firebase.initializeApp(firebaseConfig);
 

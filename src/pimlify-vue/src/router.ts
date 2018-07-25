@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import Component from 'vue-class-component';
 import VueRouter from 'vue-router';
 import Home from './components/Home.vue';
@@ -10,16 +11,19 @@ Component.registerHooks(['beforeRouteEnter']);
 
 const routes = [
   {
+    beforeEnter: requireAuth,
     component: OrderMenu,
     name: 'menu',
     path: '/menu/:restaurantId'
   },
   {
+    beforeEnter: requireAuth,
     component: Restaurant,
     name: 'restaurant',
     path: '/restaurant'
   },
   {
+    beforeEnter: requireAuth,
     component: Home,
     name: 'home',
     path: '/'
@@ -35,6 +39,16 @@ const routes = [
     path: '/login'
   }
 ];
+
+function requireAuth(to, from, next) {
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      next();
+    } else {
+      next('/login');
+    }
+  });
+}
 
 export default new VueRouter({
   routes
