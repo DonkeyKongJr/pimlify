@@ -31,4 +31,6 @@ Login and Deploy
 
 `firebase login`
 
+Enter your firebase credentials
+
 `firebase deploy`
