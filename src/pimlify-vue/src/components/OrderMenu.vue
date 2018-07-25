@@ -1,24 +1,25 @@
 <template>
 <v-card>
     <v-card-title>
-        {{currentRestaurant.name}}
-        <v-btn flat icon color="black" @click="save(currentRestaurant)">
-          <font-awesome-icon  icon="save" />  
-        </v-btn>
+      {{currentRestaurant.name}}
+      <v-btn flat icon color="black" @click="save(currentRestaurant)">
+        <v-icon>fa-save</v-icon>
+      </v-btn>
     </v-card-title>
     <v-data-table
     :items="currentRestaurant.menu"
     class="elevation-1"
     hide-actions
-    hide-headers
-  >
+    hide-headers>
     <template slot="items" slot-scope="props">
       <td>{{ props.item.orderNr }}</td>
       <td class="text-xs-right">{{ props.item.title }}</td>
       <td class="text-xs-right">{{ props.item.price }}</td>
       <td class="text-xs-right">{{ props.item.allergenic }}</td>
       <td class="text-xs-right">        
-        <v-btn small fab><font-awesome-icon icon="plus" /></v-btn>
+        <v-btn flat icon>
+          <v-icon>fa-plus</v-icon>
+        </v-btn>
       </td>
     </template>
   </v-data-table>

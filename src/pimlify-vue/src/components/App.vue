@@ -8,7 +8,7 @@
       <v-list dense>
         <v-list-tile to="/">
           <v-list-tile-action>
-            <font-awesome-icon icon="home" />
+            <v-icon>fa-home</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>Home</v-list-tile-title>
@@ -16,7 +16,7 @@
         </v-list-tile>
                 <v-list-tile to="/restaurant">
           <v-list-tile-action>
-             <font-awesome-icon icon="utensils" />
+             <v-icon>fa-utensils</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>
