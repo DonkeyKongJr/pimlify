@@ -1,6 +1,6 @@
 import { ActionTree } from 'vuex';
 import { db } from '../main';
-import { Restaurant, User } from './mutation-types';
+import { Restaurant, User } from './models';
 import State from './state';
 
 const actions: ActionTree<State, State> = {
@@ -23,9 +23,6 @@ const actions: ActionTree<State, State> = {
       .collection('restaurant')
       .doc(restaurant.id)
       .set(restaurant);
-
-    const restaurantMock = new Restaurant();
-    restaurantMock.name = 'test';
   },
   getAdditionalUserData({ commit, state }, { id }) {
     db.collection('user')
