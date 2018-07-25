@@ -36,8 +36,8 @@
       Error in Login Process. Please try again or contact administrator.<br /> 
       Detailed Message: {{errorMessage}}
     </v-alert>
-    <div v-if="isUserLoggedIn && userInfo.firstname">
-      <h2>Hello {{userInfo !== undefined ? userInfo.firstname : ''}}</h2><br/>
+    <div v-if="isUserLoggedIn && userInfo && userInfo.firstname">
+      <h2>Hello {{userInfo.firstname}}</h2><br/>
       <v-btn  @click="logout">Logout</v-btn>
     </div>
 </div>

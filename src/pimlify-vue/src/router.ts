@@ -41,11 +41,13 @@ const routes = [
 ];
 
 function requireAuth(to, from, next) {
-  if (firebase.auth().currentUser) {
-    next();
-  } else {
-    next('/login');
-  }
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      next();
+    } else {
+      next('/login');
+    }
+  });
 }
 
 export default new VueRouter({
