@@ -2,7 +2,7 @@
 
 A vue pwa to take orders for our most favorite restaurant. All data is stored in firebase.
 
-[![Build Status](https://travis-ci.org/DonkeyKongJr/pimlify.svg?branch=master)]
+![Build Status](https://travis-ci.org/DonkeyKongJr/pimlify.svg?branch=master)
 ![Sonar Cloud Badge](https://sonarcloud.io/api/project_badges/measure?project=pimlify&metric=alert_status)
 
 ## How to start pimlify development
