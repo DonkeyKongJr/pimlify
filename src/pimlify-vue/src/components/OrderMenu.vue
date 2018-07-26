@@ -2,9 +2,20 @@
 <v-card>
     <v-card-title>
       {{currentRestaurant.name}}
-      <v-btn flat icon color="black" @click="save(currentRestaurant)">
-        <v-icon>fa-save</v-icon>
-      </v-btn>
+      <v-spacer></v-spacer>
+      <v-menu bottom left>
+        <v-btn slot="activator" icon>
+          <v-icon>fa-ellipsis-v</v-icon>
+        </v-btn>
+        <v-list>
+          <v-list-tile @click="save(currentRestaurant)">
+            <v-list-tile-title><v-icon>fa-save</v-icon> Save</v-list-tile-title>
+          </v-list-tile>
+          <v-list-tile @click="isAddItemDialogOpen = true">
+            <v-list-tile-title><v-icon>fa-plus</v-icon> Create</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
     </v-card-title>
     <v-data-table
     :items="currentRestaurant.menu"
@@ -20,16 +31,12 @@
         <v-btn flat icon @click="addOrder(props.item)">
           <v-icon>fa-cart-plus</v-icon>
         </v-btn>
-
         <v-menu bottom left>
-          <v-btn
-            slot="activator"
-            icon
-          >
+          <v-btn slot="activator" icon>
             <v-icon>fa-ellipsis-v</v-icon>
           </v-btn>
           <v-list>
-            <v-list-tile @click.native="removeOrderItem(props.item)">
+            <v-list-tile @click="removeOrderItem(props.item)">
               <v-list-tile-title>Delete</v-list-tile-title>
             </v-list-tile>
           </v-list>
@@ -39,7 +46,6 @@
   </v-data-table>
   <v-layout row justify-center>
     <v-dialog v-model="isAddItemDialogOpen" persistent max-width="290">
-      <v-btn slot="activator" block dark @click="addItem = {}">Add new item</v-btn>
       <v-card>
         <v-card-title class="headline">Add new item</v-card-title>
         <v-card-text>
