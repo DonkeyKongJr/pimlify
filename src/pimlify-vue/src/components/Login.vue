@@ -54,6 +54,7 @@ import { User } from '../store';
 import firebase from 'firebase';
 import { db } from '../main';
 import store from '../store';
+import router from '../router';
 
 @Component
 export default class LoginComponent extends Vue {
@@ -83,6 +84,7 @@ export default class LoginComponent extends Vue {
         .then(data => {
           this.errorMessage = '';
           this.clear();
+          router.push('/restaurant');
         })
         .catch(error => {
           this.errorMessage = error.message;
