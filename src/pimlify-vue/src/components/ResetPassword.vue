@@ -46,10 +46,6 @@ export default class ResetPassword extends Vue {
   public successAlert: boolean = false;
   public errorMessage: string = '';
 
-  constructor() {
-    super();
-  }
-
   public emailRules = [(v: any) => !!v || 'E-mail is required', (v: any) => /.+@.+/.test(v) || 'E-mail must be valid'];
 
   public reset() {
