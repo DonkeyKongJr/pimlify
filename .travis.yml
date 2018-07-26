@@ -18,3 +18,8 @@ before_install: cd src/pimlify-vue
 script:
   - npm run build
   - sonar-scanner
+
+deploy:
+  provider: firebase
+  token:
+    secure: FIREBASE_TOKEN
