@@ -36,14 +36,20 @@
           <v-icon>fa-shopping-basket</v-icon>
         </v-badge>
       </v-btn>
-      <div class="logout" v-if="isUserLoggedIn && userInfo && userInfo.firstname">
-        Hello {{userInfo.firstname}}, have a nice day!
-    <v-btn  
-      @click="logout"
-    >
-      Logout
-    </v-btn>
-      </div>
+      <v-menu v-if="isUserLoggedIn && userInfo"
+      :close-on-content-click="false"
+      :nudge-width="200"
+      offset-y>
+        <v-btn slot="activator" icon>
+          <v-icon>fa-user</v-icon>
+        </v-btn>
+        <v-card>
+          Hello {{userInfo.firstname}}, have a nice day!
+          <v-btn @click="logout" >
+            Logout
+          </v-btn>
+        </v-card>
+      </v-menu>      
     </v-toolbar>
     <v-content>
       <v-container fluid>
@@ -116,10 +122,4 @@ export default class App extends Vue {
 </script>
 
 <style>
-.logout {
-  position: absolute !important;
-  right: 40px;
-  top: 10px;
-  color: black;
-}
 </style>
