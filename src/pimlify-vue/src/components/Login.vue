@@ -1,6 +1,7 @@
 <template>
 <div style='width:50%'>
- <v-form ref="form" v-model="valid" v-if="!isUserLoggedIn">
+  <div v-if="!isUserLoggedIn">
+ <v-form ref="form" v-model="valid" >
     <v-text-field
       v-model="user.email"
       :rules="emailRules"
@@ -22,6 +23,9 @@
     </v-btn>
     <v-btn @click="clear">clear</v-btn>
   </v-form>
+  <div class="hints">Dont't have an account? Create one <router-link :to="'register'">here.</router-link></div>
+  <div>Forgot your password? Reset <router-link :to="'reset-password'">here.</router-link></div>
+  </div>
   <v-alert
       :value="successAlert"
       type="success"
@@ -50,6 +54,7 @@ import { User } from '../store';
 import firebase from 'firebase';
 import { db } from '../main';
 import store from '../store';
+import router from '../router';
 
 @Component
 export default class LoginComponent extends Vue {
@@ -79,6 +84,7 @@ export default class LoginComponent extends Vue {
         .then(data => {
           this.errorMessage = '';
           this.clear();
+          router.push('/restaurant');
         })
         .catch(error => {
           this.errorMessage = error.message;
@@ -117,4 +123,7 @@ export default class LoginComponent extends Vue {
 }
 </script>
 <style>
+.hints {
+  margin-top: 15px;
+}
 </style>
