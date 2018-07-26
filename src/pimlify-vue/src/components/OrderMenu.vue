@@ -1,5 +1,5 @@
 <template>
-<v-card v-if="currentRestaurant !== undefined">
+<v-card>
     <v-card-title>
       {{currentRestaurant.name}}
       <v-btn flat icon color="black" @click="save(currentRestaurant)">
@@ -18,8 +18,22 @@
       <td class="text-xs-right">{{ props.item.allergenic }}</td>
       <td class="text-xs-right">        
         <v-btn flat icon @click="addOrder(props.item)">
-          <v-icon>fa-plus</v-icon>
+          <v-icon>fa-cart-plus</v-icon>
         </v-btn>
+
+        <v-menu bottom left>
+          <v-btn
+            slot="activator"
+            icon
+          >
+            <v-icon>fa-ellipsis-v</v-icon>
+          </v-btn>
+          <v-list>
+            <v-list-tile @click.native="removeOrderItem(props.item)">
+              <v-list-tile-title>Delete</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
       </td>
     </template>
   </v-data-table>
@@ -45,8 +59,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="orange darken-1" flat @click.native="createItem(addItem)">Add new item</v-btn>
-          <v-btn color="orange darken-1" flat @click.native="isAddItemDialogOpen = false">Cancel</v-btn>
+          <v-btn color="darken-1" flat @click.native="addOrderItem(addItem)">Add new item</v-btn>
+          <v-btn color="darken-1" flat @click.native="isAddItemDialogOpen = false">Cancel</v-btn>
         </v-card-actions>
       </v-card>      
     </v-dialog>
@@ -77,12 +91,19 @@ export default class OrderMenu extends Vue {
     });
   }
 
-  public createItem(order: Order) {
+  public addOrderItem(order: Order) {
     store.commit('addOrderItem', {
       restaurantId: this.currentRestaurant.id,
       order: order
     });
     this.isAddItemDialogOpen = false;
+  }
+
+  public removeOrderItem(order: Order) {
+    store.commit('removeOrderItem', {
+      restaurantId: this.currentRestaurant.id,
+      order: order
+    });
   }
 
   public addOrder(order: Order) {
