@@ -22,4 +22,4 @@ script:
 deploy:
   provider: firebase
   token:
-    secure: FIREBASE_TOKEN
+    secure: $FIREBASE_TOKEN
