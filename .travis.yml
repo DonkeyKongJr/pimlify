@@ -19,6 +19,8 @@ script:
   - npm run build
   - sonar-scanner
 
+before_deploy: cd src/pimlify-vue
+
 deploy:
   provider: firebase
   token:
