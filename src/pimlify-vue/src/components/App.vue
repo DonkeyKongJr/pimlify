@@ -29,8 +29,9 @@
     <v-toolbar color="orange" dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Pimlify</v-toolbar-title>
-      <div v-if="isUserLoggedIn">
-    <v-btn  class="logout-button"
+      <div class="logout" v-if="isUserLoggedIn && userInfo && userInfo.firstname">
+        Hello {{userInfo.firstname}}, have a nice day!
+    <v-btn  
       @click="logout"
     >
       Logout
@@ -58,6 +59,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import firebase from 'firebase';
 import router from '../router';
+import { User } from '../store';
 
 @Component
 export default class App extends Vue {
@@ -67,6 +69,10 @@ export default class App extends Vue {
   constructor() {
     super();
     this.getUserAuthState();
+  }
+
+  public get userInfo() {
+    return this.$store.state.userInfo as User;
   }
 
   private logout() {
@@ -81,6 +87,9 @@ export default class App extends Vue {
   private getUserAuthState() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
+        this.$store.dispatch('getAdditionalUserData', {
+          id: user.uid
+        });
         this.isUserLoggedIn = true;
       } else {
         this.isUserLoggedIn = false;
@@ -91,9 +100,10 @@ export default class App extends Vue {
 </script>
 
 <style>
-.logout-button {
+.logout {
   position: absolute !important;
   right: 40px;
   top: 10px;
+  color: black;
 }
 </style>
