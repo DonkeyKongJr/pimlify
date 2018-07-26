@@ -15,6 +15,15 @@ const mutations: MutationTree<State> = {
   },
   setUser(state, { item }) {
     state.userInfo = item;
+  },
+  addOrder(state, { order }) {
+    state.orders.push(order);
+  },
+  removeOrder(state, { id }) {
+    const index = state.orders.findIndex(o => o.id === id);
+    if (index > -1) {
+      state.orders.splice(index, 1);
+    }
   }
 };
 
