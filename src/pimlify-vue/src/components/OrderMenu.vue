@@ -61,6 +61,11 @@
               type="number"
               required
             ></v-text-field>
+            <v-text-field
+              v-model="addItem.orderNr"
+              label="Order Number"
+              required
+            ></v-text-field>
           </v-card-text>
           <v-card-actions>
             <v-btn color="darken-1" flat type="submit">Add new item</v-btn>
