@@ -11,7 +11,7 @@
           <v-list-tile @click="save(currentRestaurant)">
             <v-list-tile-title><v-icon>fa-save</v-icon> Save</v-list-tile-title>
           </v-list-tile>
-          <v-list-tile @click="isAddItemDialogOpen = true">
+          <v-list-tile @click="showAddItemDialog = true">
             <v-list-tile-title><v-icon>fa-plus</v-icon> Create</v-list-tile-title>
           </v-list-tile>
         </v-list>
@@ -37,7 +37,7 @@
           </v-btn>
           <v-list>
             <v-list-tile @click="removeOrderItem(props.item)">
-              <v-list-tile-title>Delete</v-list-tile-title>
+              <v-list-tile-title><v-icon>fa-trash</v-icon> Delete</v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>
@@ -45,11 +45,11 @@
     </template>
   </v-data-table>
   <v-layout row justify-center>
-    <v-dialog v-model="isAddItemDialogOpen" persistent max-width="290">
-      <v-card>
-        <v-card-title class="headline">Add new item</v-card-title>
-        <v-card-text>
-          <v-form ref="form" v-if="addItem !== undefined">
+    <v-dialog v-model="showAddItemDialog" persistent max-width="290">
+      <v-form ref="form" v-if="addItem !== undefined" @submit="addOrderItem(addItem)" >
+        <v-card>
+          <v-card-title class="headline">Add new item</v-card-title>
+          <v-card-text>
             <v-text-field
               v-model="addItem.title"
               label="Name"
@@ -61,14 +61,13 @@
               type="number"
               required
             ></v-text-field>
-          </v-form>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="darken-1" flat @click.native="addOrderItem(addItem)">Add new item</v-btn>
-          <v-btn color="darken-1" flat @click.native="isAddItemDialogOpen = false">Cancel</v-btn>
-        </v-card-actions>
-      </v-card>      
+          </v-card-text>
+          <v-card-actions>
+            <v-btn color="darken-1" flat type="submit">Add new item</v-btn>
+            <v-btn color="darken-1" flat @click.native="showAddItemDialog = false">Cancel</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-form>   
     </v-dialog>
   </v-layout>
 </v-card>
@@ -84,7 +83,7 @@ Component.registerHooks(['beforeRouteEnter']);
 
 @Component
 export default class OrderMenu extends Vue {
-  public isAddItemDialogOpen: boolean = false;
+  public showAddItemDialog: boolean = false;
   public addItem: Order = new Order();
 
   public get currentRestaurant() {
@@ -102,7 +101,8 @@ export default class OrderMenu extends Vue {
       restaurantId: this.currentRestaurant.id,
       order: order
     });
-    this.isAddItemDialogOpen = false;
+    this.addItem = new Order();
+    this.showAddItemDialog = false;
   }
 
   public removeOrderItem(order: Order) {
