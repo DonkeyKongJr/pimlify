@@ -6,6 +6,7 @@ import Login from './components/Login.vue';
 import OrderMenu from './components/OrderMenu.vue';
 import Register from './components/Register.vue';
 import Restaurant from './components/Restaurant.vue';
+import ResetPassword from './components/ResetPassword.vue';
 
 Component.registerHooks(['beforeRouteEnter']);
 
@@ -37,6 +38,11 @@ const routes = [
     component: Login,
     name: 'login',
     path: '/login'
+  },
+  {
+    component: ResetPassword,
+    name: 'reset-password',
+    path: '/reset-password'
   }
 ];
 
