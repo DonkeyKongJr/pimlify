@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Home from './components/Home.vue';
 import Login from './components/Login.vue';
 import OrderMenu from './components/OrderMenu.vue';
+import Orders from './components/Orders.vue';
 import Register from './components/Register.vue';
 import Restaurant from './components/Restaurant.vue';
 import ResetPassword from './components/ResetPassword.vue';
@@ -28,6 +29,12 @@ const routes = [
     component: Home,
     name: 'home',
     path: '/'
+  },
+  {
+    beforeEnter: requireAuth,
+    component: Orders,
+    name: 'orders',
+    path: '/orders'
   },
   {
     component: Register,

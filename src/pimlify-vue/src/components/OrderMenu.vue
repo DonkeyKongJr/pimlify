@@ -1,5 +1,5 @@
 <template>
-<v-card>
+<v-card v-if="currentRestaurant !== undefined">
     <v-card-title>
       {{currentRestaurant.name}}
       <v-btn flat icon color="black" @click="save(currentRestaurant)">
@@ -17,7 +17,7 @@
       <td class="text-xs-right">{{ props.item.price }}</td>
       <td class="text-xs-right">{{ props.item.allergenic }}</td>
       <td class="text-xs-right">        
-        <v-btn flat icon>
+        <v-btn flat icon @click="addOrder(props.item)">
           <v-icon>fa-plus</v-icon>
         </v-btn>
       </td>
@@ -83,6 +83,10 @@ export default class OrderMenu extends Vue {
       order: order
     });
     this.isAddItemDialogOpen = false;
+  }
+
+  public addOrder(order: Order) {
+    store.commit('addOrder', { order: order });
   }
 
   public save(restaurant: Restaurant) {

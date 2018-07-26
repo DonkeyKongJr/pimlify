@@ -14,7 +14,7 @@
             <v-list-tile-title>Home</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-                <v-list-tile to="/restaurant">
+        <v-list-tile to="/restaurant">
           <v-list-tile-action>
              <v-icon>fa-utensils</v-icon>
           </v-list-tile-action>
@@ -29,6 +29,13 @@
     <v-toolbar color="orange" dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Pimlify</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn icon to="/orders">
+        <v-badge left>
+          <span slot="badge" v-if="ordersCount !== 0">{{ordersCount}}</span>
+          <v-icon>fa-shopping-basket</v-icon>
+        </v-badge>
+      </v-btn>
       <div class="logout" v-if="isUserLoggedIn && userInfo && userInfo.firstname">
         Hello {{userInfo.firstname}}, have a nice day!
     <v-btn  
@@ -64,6 +71,15 @@ import { User } from '../store';
 @Component
 export default class App extends Vue {
   public drawer: boolean = false;
+
+  public get orders() {
+    return this.$store.state.orders;
+  }
+
+  public get ordersCount() {
+    return this.$store.getters.ordersCount;
+  }
+
   public isUserLoggedIn: boolean = false;
 
   constructor() {
