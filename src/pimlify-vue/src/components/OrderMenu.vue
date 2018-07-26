@@ -46,13 +46,13 @@
   </v-data-table>
   <v-layout row justify-center>
     <v-dialog v-model="showAddItemDialog" persistent max-width="290">
-      <v-form ref="form" v-if="addItem !== undefined" @submit="addOrderItem(addItem)" >
+      <v-form ref="addOrderItemForm" v-model="addOrderItemValid" v-if="addItem !== undefined" @submit="addOrderItem(addItem)" >
         <v-card>
           <v-card-title class="headline">Add new item</v-card-title>
           <v-card-text>
             <v-text-field
               v-model="addItem.title"
-              label="Name"
+              label="Title" :rules="titleRules"
               required
             ></v-text-field>
             <v-text-field
@@ -84,7 +84,9 @@ Component.registerHooks(['beforeRouteEnter']);
 @Component
 export default class OrderMenu extends Vue {
   public showAddItemDialog: boolean = false;
+  public addOrderItemValid: boolean = false;
   public addItem: Order = new Order();
+  public titleRules = [v => !!v || 'Title is required'];
 
   public get currentRestaurant() {
     return this.$store.getters.getRestaurantById(this.$route.params.restaurantId);
@@ -97,6 +99,9 @@ export default class OrderMenu extends Vue {
   }
 
   public addOrderItem(order: Order) {
+    if (!(this.$refs.addOrderItemForm as any).validate()) {
+      return;
+    }
     store.commit('addOrderItem', {
       restaurantId: this.currentRestaurant.id,
       order: order
