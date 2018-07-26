@@ -18,6 +18,7 @@
       <v-btn
       :disabled="!valid"
       @click="login"
+      type="submit"
     >
       Login
     </v-btn>
