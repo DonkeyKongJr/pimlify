@@ -26,7 +26,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar color="orange" dark fixed app>
+    <v-toolbar dark fixed app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Pimlify</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -61,7 +61,7 @@
         </v-layout>
       </v-container>
     </v-content>
-    <v-footer color="orange" app>
+    <v-footer app>
       <span class="white--text">&copy; 2018</span>
     </v-footer>
   </v-app>
