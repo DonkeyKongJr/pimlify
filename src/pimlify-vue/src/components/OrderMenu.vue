@@ -1,5 +1,5 @@
 <template>
-<v-card>
+<v-card v-if="currentRestaurant !== undefined">
     <v-card-title>
       {{currentRestaurant.name}}
       <v-spacer></v-spacer>
@@ -72,64 +72,15 @@
             <v-btn color="darken-1" flat @click.native="showAddItemDialog = false">Cancel</v-btn>
           </v-card-actions>
         </v-card>
-      </v-form>   
+      </v-form>
     </v-dialog>
   </v-layout>
 </v-card>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
-import store, { Order, Restaurant } from '../store';
-import { Route } from 'vue-router';
-
-Component.registerHooks(['beforeRouteEnter']);
-
-@Component
-export default class OrderMenu extends Vue {
-  public showAddItemDialog: boolean = false;
-  public addOrderItemValid: boolean = false;
-  public addItem: Order = new Order();
-  public titleRules = [v => !!v || 'Title is required'];
-
-  public get currentRestaurant() {
-    return this.$store.getters.getRestaurantById(this.$route.params.restaurantId);
-  }
-
-  beforeRouteEnter(to: Route, from: Route, next: (() => void)) {
-    return store.dispatch('loadRestaurants').then(() => {
-      next();
-    });
-  }
-
-  public addOrderItem(order: Order) {
-    if (!(this.$refs.addOrderItemForm as any).validate()) {
-      return;
-    }
-    store.commit('addOrderItem', {
-      restaurantId: this.currentRestaurant.id,
-      order: order
-    });
-    this.addItem = new Order();
-    this.showAddItemDialog = false;
-  }
-
-  public removeOrderItem(order: Order) {
-    store.commit('removeOrderItem', {
-      restaurantId: this.currentRestaurant.id,
-      order: order
-    });
-  }
-
-  public addOrder(order: Order) {
-    store.commit('addOrder', { order: order });
-  }
-
-  public save(restaurant: Restaurant) {
-    this.$store.dispatch('saveRestaurant', { restaurant: restaurant });
-  }
-}
+import OrderMenu from './order-menu';
+export default OrderMenu;
 </script>
 
 <style>
