@@ -9,8 +9,16 @@ const mutations: MutationTree<State> = {
   addOrderItem(state, { restaurantId, order }) {
     const restaurant = state.restaurants.find(res => res.id === restaurantId);
     if (restaurant) {
-      order.id = AutoId.newId();
       restaurant.menu.push(order);
+    }
+  },
+  removeOrderItem(state, { restaurantId, order }) {
+    const restaurant = state.restaurants.find(res => res.id === restaurantId);
+    if (restaurant) {
+      const index = restaurant.menu.findIndex(o => o.id === order.id);
+      if (index > -1) {
+        restaurant.menu.splice(index, 1);
+      }
     }
   },
   setUser(state, { item }) {

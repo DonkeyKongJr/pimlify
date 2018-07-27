@@ -22,7 +22,7 @@ const actions: ActionTree<State, State> = {
     return db
       .collection('restaurant')
       .doc(restaurant.id)
-      .set(restaurant);
+      .set(JSON.parse(JSON.stringify(restaurant)));
   },
   getAdditionalUserData({ commit, state }, { id }) {
     db.collection('user')
