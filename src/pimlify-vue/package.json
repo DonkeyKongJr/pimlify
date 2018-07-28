@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test-watch": "jest --watch",
     "start": "parcel index.html",
     "build": "parcel build"
   },
@@ -33,9 +34,12 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.1",
     "@vue/component-compiler-utils": "^2.1.0",
+    "jest": "^23.4.2",
     "parcel-bundler": "^1.9.7",
     "prettier": "^1.13.7",
+    "ts-jest": "^23.0.1",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.14.0",
     "typescript": "^2.9.2",
