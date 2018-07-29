@@ -43,6 +43,7 @@
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.14.0",
     "typescript": "^2.9.2",
+    "vue-jest": "^2.6.0",
     "vue-template-compiler": "^2.5.16"
   }
 }
