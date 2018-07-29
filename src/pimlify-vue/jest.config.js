@@ -7,5 +7,7 @@ module.exports = {
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node', 'vue'],
   verbose: true,
-  testURL: 'http://localhost/'
+  testURL: 'http://localhost/',
+  collectCoverage: true,
+  collectCoverageFrom: ['**/*.{js,vue}', '!**/node_modules/**']
 };
