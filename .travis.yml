@@ -8,13 +8,6 @@ cache:
   directories:
     - node_modules
 
-branches:
-  only:
-  - master
-
-before_script:
-  - npm i firebase-tools
-
 addons:
   chrome: stable
   sonarcloud:
@@ -25,4 +18,8 @@ before_install: cd src/pimlify-vue
 script:
   - npm run build
   - sonar-scanner
-  - firebase deploy --token=${FIREBASE_API_TOKEN}
+
+deploy:
+  skip_cleanup: true
+  provider: firebase
+  token: ${FIREBASE_API_TOKEN}
