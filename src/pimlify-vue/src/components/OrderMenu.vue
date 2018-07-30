@@ -79,7 +79,7 @@
 </template>
 
 <script lang="ts">
-import OrderMenu from './order-menu';
+import OrderMenu from './order-menu-component';
 export default OrderMenu;
 </script>
 

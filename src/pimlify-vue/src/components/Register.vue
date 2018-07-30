@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import Register from './register';
+import Register from './register-component';
 export default Register;
 </script>
 

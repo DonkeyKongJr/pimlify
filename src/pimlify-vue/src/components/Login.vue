@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts">
-import Login from './login';
+import Login from './login-component';
 export default Login;
 </script>
 <style>
