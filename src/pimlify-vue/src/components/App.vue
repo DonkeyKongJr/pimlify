@@ -68,7 +68,7 @@
 </template>
 
 <script lang="ts">
-import App from './app';
+import App from './app-component';
 export default App;
 </script>
 

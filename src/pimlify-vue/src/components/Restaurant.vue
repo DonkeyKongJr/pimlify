@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import Restaurant from './restaurant';
+import Restaurant from './restaurant-component';
 export default Restaurant;
 </script>
 
