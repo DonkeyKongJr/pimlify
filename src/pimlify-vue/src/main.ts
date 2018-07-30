@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
 import Vuetify from 'vuetify';
 import App from './components/App.vue';
 
@@ -23,8 +22,6 @@ Vue.use(Vuetify, {
   iconfont: 'fa'
 });
 Vue.use(VueFire);
-Vue.use(VueRouter); 
-
 firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
