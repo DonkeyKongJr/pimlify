@@ -8,7 +8,6 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node', 'vue'],
   verbose: true,
   testURL: 'http://localhost/',
-  testResultsProcessor: 'jest-sonar-reporter',
   collectCoverage: true,
   collectCoverageFrom: ['**/*.{js,ts,vue}', '!**/node_modules/**', '!**/*.d.ts'],
   coverageReporters: ['lcovonly'],
