@@ -10,6 +10,7 @@ export default class LoginComponent extends Vue {
   public successAlert: boolean = false;
   public errorMessage: string = '';
   public isUserLoggedIn: boolean = false;
+  public valid: boolean = true;
 
   public emailRules = [(v: any) => !!v || 'E-mail is required', (v: any) => /.+@.+/.test(v) || 'E-mail must be valid'];
 
