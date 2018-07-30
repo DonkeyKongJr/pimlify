@@ -27,8 +27,8 @@ export default class OrderMenu extends Vue {
       return;
     }
     store.commit('addOrderItem', {
-      restaurantId: this.currentRestaurant.id,
-      order
+      order,
+      restaurantId: this.currentRestaurant.id
     });
     this.addItem = new Order();
     this.showAddItemDialog = false;
@@ -36,8 +36,8 @@ export default class OrderMenu extends Vue {
 
   public removeOrderItem(order: Order) {
     store.commit('removeOrderItem', {
-      restaurantId: this.currentRestaurant.id,
-      order
+      order,
+      restaurantId: this.currentRestaurant.id
     });
   }
 
