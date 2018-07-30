@@ -24,7 +24,7 @@
     </v-btn>
     <v-btn @click="clear">clear</v-btn>
   </v-form>
-  <div class="hints">Dont't have an account? Create one <router-link :to="'register'">here.</router-link></div>
+  <div class="hints">Don't have an account? Create one <router-link :to="'register'">here.</router-link></div>
   <div>Forgot your password? Reset <router-link :to="'reset-password'">here.</router-link></div>
   </div>
   <v-alert

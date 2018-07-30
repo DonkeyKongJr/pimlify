@@ -30,9 +30,6 @@ db.settings(settings);
 
 // tslint:disable-next-line:no-unused-expression
 new Vue({
-  created: () => {
-    store.dispatch('loadRestaurants');
-  },
   el: '#app',
   render: h => h(App),
   router,
