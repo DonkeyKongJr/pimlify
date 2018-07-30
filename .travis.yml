@@ -16,8 +16,11 @@ addons:
 before_install: cd src/pimlify-vue
 
 script:
-  - npm run build
+  - npm test
   - sonar-scanner
+
+before_deploy:
+  - npm run build
 
 deploy:
   skip_cleanup: true
