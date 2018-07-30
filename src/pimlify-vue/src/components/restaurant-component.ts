@@ -11,8 +11,9 @@ export default class Restaurat extends Vue {
   ];
 
   public beforeRouteEnter(to, from, next) {
-    store.dispatch('loadRestaurants');
-    next();
+    store.dispatch('loadRestaurants').then(() => {
+      next();
+    });
   }
   public get restaurants() {
     return this.$store.state.restaurants;
