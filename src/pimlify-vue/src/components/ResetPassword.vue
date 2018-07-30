@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import ResetPassword from './reset-password';
+import ResetPassword from './reset-password-component';
 export default ResetPassword;
 </script>
 <style>

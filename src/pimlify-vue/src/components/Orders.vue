@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import Orders from './orders';
+import Orders from './orders-component';
 export default Orders;
 </script>
 
