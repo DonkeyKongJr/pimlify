@@ -10,7 +10,6 @@ module.exports = {
   testURL: 'http://localhost/',
   collectCoverage: true,
   collectCoverageFrom: ['**/*.{js,ts,vue}', '!**/node_modules/**', '!**/*.d.ts'],
-  testResultsProcessor: 'jest-sonar-reporter',
   coverageReporters: ['lcovonly'],
   coverageDirectory: 'test-reports'
 };
