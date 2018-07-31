@@ -1,11 +1,12 @@
+import firebase from 'firebase';
 import { ActionTree } from 'vuex';
-import { db } from '../main';
 import { Restaurant, User } from './models';
 import State from './state';
 
 const actions: ActionTree<State, State> = {
   loadRestaurants({ commit, state }) {
-    return db
+    return firebase
+      .firestore()
       .collection('restaurant')
       .get()
       .then(querySnapshot => {
@@ -19,13 +20,16 @@ const actions: ActionTree<State, State> = {
       });
   },
   saveRestaurant({ commit, state }, { restaurant }) {
-    return db
+    return firebase
+      .firestore()
       .collection('restaurant')
       .doc(restaurant.id)
       .set(JSON.parse(JSON.stringify(restaurant)));
   },
   getAdditionalUserData({ commit, state }, { id }) {
-    db.collection('user')
+    firebase
+      .firestore()
+      .collection('user')
       .doc(id)
       .get()
       .then(querySnapshot => {

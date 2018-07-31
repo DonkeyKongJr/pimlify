@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { User } from '../store';
+import { User } from '../store/models/user';
 
 @Component
 export default class ResetPassword extends Vue {
