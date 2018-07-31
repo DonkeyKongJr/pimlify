@@ -18,11 +18,11 @@ describe('ResetPassword', () => {
 
   it('email should be invalid', () => {
     component.find('input').setValue('test');
-    expect(component.vm.valid === false);
+    expect(component.vm.valid).toBeFalsy();
   });
 
   it('email should be valid', () => {
     component.find('input').setValue('test@test.com');
-    expect(component.vm.valid);
+    expect(component.vm.valid).toBeTruthy();
   });
 });
