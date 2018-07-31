@@ -1,5 +1,5 @@
 module.exports = {
-  roots: ['<rootDir>/test'],
+  roots: ['<rootDir>/src'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
     '.*\\.(vue)$': '<rootDir>/node_modules/vue-jest'
@@ -9,5 +9,7 @@ module.exports = {
   verbose: true,
   testURL: 'http://localhost/',
   collectCoverage: true,
-  collectCoverageFrom: ['**/*.{js,vue}', '!**/node_modules/**']
+  collectCoverageFrom: ['**/*.{js,ts,vue}', '!**/node_modules/**', '!**/*.d.ts'],
+  coverageReporters: ['lcovonly'],
+  coverageDirectory: 'test-reports'
 };

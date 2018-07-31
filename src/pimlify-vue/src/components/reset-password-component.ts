@@ -1,13 +1,14 @@
 import firebase from 'firebase';
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { User } from '../store';
+import { User } from '../store/models/user';
 
 @Component
 export default class ResetPassword extends Vue {
   public user: User = new User();
   public successAlert: boolean = false;
   public errorMessage: string = '';
+  public valid: boolean = true;
 
   public emailRules = [(v: any) => !!v || 'E-mail is required', (v: any) => /.+@.+/.test(v) || 'E-mail must be valid'];
 
