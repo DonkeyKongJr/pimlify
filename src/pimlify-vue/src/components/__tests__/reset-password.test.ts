@@ -1,9 +1,9 @@
 import { mount, shallowMount, Wrapper } from '@vue/test-utils';
+import * as firebase from 'firebase';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import ResetPasswordComponent from '../reset-password-component';
 import ResetPassword from '../ResetPassword.vue';
-import * as firebase from 'firebase';
 
 Vue.config.silent = true;
 
@@ -18,7 +18,7 @@ describe('ResetPassword', () => {
     component = mount<ResetPasswordComponent>(ResetPassword);
     shallowComponent = shallowMount<ResetPasswordComponent>(ResetPassword);
 
-    const initializeApp = jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {
+    jest.spyOn(firebase, 'initializeApp').mockImplementation(() => {
       return {
         auth: () => {
           return {

@@ -2,7 +2,7 @@
 <div style='width:50%'>
   <div v-if="!isUserLoggedIn">
  <v-form ref="form" v-model="valid" >
-    <v-text-field
+    <v-text-field class="email"
       v-model="user.email"
       :rules="emailRules"
       label="E-Mail"
