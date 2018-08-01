@@ -1,13 +1,14 @@
-import { config, createLocalVue, shallowMount, Wrapper, RouterLinkStub } from '@vue/test-utils';
+import { config, createLocalVue, RouterLinkStub, shallowMount, Wrapper } from '@vue/test-utils';
 import VueRouter from 'vue-router';
+import Vuetify from '../../../node_modules/vuetify';
 import LoginComponent from '../login-component';
 import Login from '../Login.vue';
 
 config.silent = false;
 
 const localVue = createLocalVue();
+localVue.use(Vuetify);
 localVue.use(VueRouter);
-const router = new VueRouter();
 
 describe('Login', () => {
   let component: Wrapper<LoginComponent>;
