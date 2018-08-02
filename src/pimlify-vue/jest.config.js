@@ -11,5 +11,10 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ['**/*.{js,ts,vue}', '!**/node_modules/**', '!**/*.d.ts'],
   coverageReporters: ['lcovonly'],
-  coverageDirectory: 'test-reports'
+  coverageDirectory: 'test-reports',
+  moduleNameMapper: {
+    '\\.(css|less)$': '<rootDir>/src/components/__mocks__/styleMock.js',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      '<rootDir>/src/components/__mocks__/fileMock.js'
+  }
 };
